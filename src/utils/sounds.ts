@@ -1,8 +1,5 @@
 import { Audio } from 'expo-av';
 
-let warningSound: Audio.Sound | null = null;
-let endSound: Audio.Sound | null = null;
-
 /**
  * Initialize and load sound effects
  * Call this once when the app starts
@@ -20,68 +17,66 @@ export async function initializeSounds() {
 }
 
 /**
- * Play a warning sound (10 seconds remaining)
+ * Generic helper to play a sound file from assets
+ * Robust: handles errors gracefully without crashing the app
  */
-export async function playWarningSound() {
+async function playSoundFile(soundPath: any, soundName: string) {
   try {
-    // Create and play a short beep tone
     const { sound } = await Audio.Sound.createAsync(
-      // Using Data URI for a simple beep sound
-      { uri: 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=' },
-      { shouldPlay: true, volume: 0.8 }
-    );
-    
-    // Unload after playing
-    sound.setOnPlaybackStatusUpdate((status) => {
-      if (status.isLoaded && status.didJustFinish) {
-        sound.unloadAsync();
-      }
-    });
-  } catch (error) {
-    console.error('Failed to play warning sound:', error);
-    // Fallback to console log
-    console.log('🔔 10 seconds remaining!');
-  }
-}
-
-/**
- * Play an end sound (time's up)
- */
-export async function playEndSound() {
-  try {
-    // Create and play a longer beep tone
-    const { sound } = await Audio.Sound.createAsync(
-      { uri: 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=' },
+      soundPath,
       { shouldPlay: true, volume: 1.0 }
     );
     
-    // Unload after playing
+    // Unload after playing to free resources
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         sound.unloadAsync();
       }
     });
   } catch (error) {
-    console.error('Failed to play end sound:', error);
-    // Fallback to console log
-    console.log('⏰ Time\'s up!');
+    // Log error but don't crash - sound is optional
+    console.log(`[Sound] Could not play ${soundName}:`, error instanceof Error ? error.message : 'Unknown error');
   }
 }
 
 /**
- * Cleanup sounds on app exit
+ * Play start sound (when countdown finishes and turn begins)
  */
-export async function cleanupSounds() {
-  try {
-    if (warningSound) {
-      await warningSound.unloadAsync();
-      warningSound = null;
-    }
-    if (endSound) {
-      await endSound.unloadAsync();
-      endSound = null;
-    }
-  } catch (error) {
-    console.error('Failed to cleanup sounds:', error);
-  }
+export async function playStartSound() {
+  await playSoundFile(require('../../assets/sounds/start.mp3'), 'start');
+}
+
+/**
+ * Play warning sound (10 seconds remaining)
+ */
+export async function playWarningSound() {
+  await playSoundFile(require('../../assets/sounds/warn10.mp3'), 'warn10');
+}
+
+/**
+ * Play end sound (time's up)
+ */
+export async function playEndSound() {
+  await playSoundFile(require('../../assets/sounds/end.mp3'), 'end');
+}
+
+/**
+ * Play correct sound (when RÄTT button is pressed)
+ */
+export async function playCorrectSound() {
+  await playSoundFile(require('../../assets/sounds/correct.mp3'), 'correct');
+}
+
+/**
+ * Play pass sound (when PASS button is pressed)
+ */
+export async function playPassSound() {
+  await playSoundFile(require('../../assets/sounds/pass.mp3'), 'pass');
+}
+
+/**
+ * Play foul sound (when REGELBROTT button is pressed)
+ */
+export async function playFoulSound() {
+  await playSoundFile(require('../../assets/sounds/foul.mp3'), 'foul');
 }
