@@ -1,6 +1,18 @@
 // Word types with corresponding colors
 export type WordType = 'substantiv' | 'adjektiv' | 'verb' | 'personer' | 'platser';
 
+// Internal word category types (from JSON files)
+export type WordCategory = 'noun' | 'verb' | 'adjective' | 'people' | 'places';
+
+// Mapping from internal categories to display types
+export const categoryToType: Record<WordCategory, WordType> = {
+  noun: 'substantiv',
+  verb: 'verb',
+  adjective: 'adjektiv',
+  people: 'personer',
+  places: 'platser',
+};
+
 // Word interface
 export interface Word {
   id: string;
