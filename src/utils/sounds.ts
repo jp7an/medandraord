@@ -20,11 +20,11 @@ export async function initializeSounds() {
  * Generic helper to play a sound file from assets
  * Robust: handles errors gracefully without crashing the app
  */
-async function playSoundFile(soundPath: any, soundName: string) {
+async function playSoundFile(soundPath: any, soundName: string, volume: number = 1.0) {
   try {
     const { sound } = await Audio.Sound.createAsync(
       soundPath,
-      { shouldPlay: true, volume: 1.0 }
+      { shouldPlay: true, volume }
     );
     
     // Unload after playing to free resources
@@ -35,7 +35,7 @@ async function playSoundFile(soundPath: any, soundName: string) {
     });
   } catch (error) {
     // Log error but don't crash - sound is optional
-    console.log(`[Sound] Could not play ${soundName}:`, error instanceof Error ? error.message : 'Unknown error');
+    console.warn(`[Sound] Could not play ${soundName}:`, error instanceof Error ? error.message : 'Unknown error');
   }
 }
 
