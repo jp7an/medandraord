@@ -1,4 +1,4 @@
-import { Audio } from 'expo-av';
+import { Audio, AVPlaybackSource } from 'expo-av';
 
 /**
  * Initialize and load sound effects
@@ -20,7 +20,7 @@ export async function initializeSounds() {
  * Generic helper to play a sound file from assets
  * Robust: handles errors gracefully without crashing the app
  */
-async function playSoundFile(soundPath: any, soundName: string, volume: number = 1.0) {
+async function playSoundFile(soundPath: AVPlaybackSource, soundName: string, volume: number = 1.0) {
   try {
     const { sound } = await Audio.Sound.createAsync(
       soundPath,
