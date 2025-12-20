@@ -1,4 +1,5 @@
-import { Audio, AVPlaybackSource } from 'expo-av';
+import { Audio } from 'expo-av';
+import type { AVPlaybackSource } from 'expo-av';
 
 /**
  * Initialize and load sound effects
@@ -40,7 +41,12 @@ async function playSoundFile(soundPath: AVPlaybackSource, soundName: string, vol
     });
   } catch (error) {
     // Log error but don't crash - sound is optional
-    console.warn(`[Sound] Could not play ${soundName}:`, error instanceof Error ? error.message : 'Unknown error');
+    const errorMsg = error instanceof Error 
+      ? error.message 
+      : typeof error === 'string' 
+        ? error 
+        : JSON.stringify(error);
+    console.warn(`[Sound] Could not play ${soundName}:`, errorMsg);
   }
 }
 
