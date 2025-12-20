@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Med Andra Ord",
+    "slug": "medandraord",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "platforms": ["android"],
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a1a1a"
+      },
+      "package": "com.medandraord.app"
+    }
+  }
+}
