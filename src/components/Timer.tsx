@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { theme } from '../theme/theme';
+import { playWarningSound, playEndSound } from '../utils/sounds';
 
 interface TimerProps {
   durationSeconds: number;
@@ -33,12 +34,12 @@ export default function Timer({
           onTick(newValue);
         }
         
-        // Sound alerts (stub for now)
+        // Sound alerts
         if (newValue === 10) {
-          console.log('🔔 10 seconds remaining!');
+          playWarningSound();
         }
         if (newValue === 0) {
-          console.log('⏰ Time\'s up!');
+          playEndSound();
         }
         
         return newValue;
