@@ -22,15 +22,20 @@ export async function initializeSounds() {
  */
 async function playSoundFile(soundPath: AVPlaybackSource, soundName: string, volume: number = 1.0) {
   try {
+    // Validate volume is in valid range
+    const validVolume = Math.max(0.0, Math.min(1.0, volume));
+    
     const { sound } = await Audio.Sound.createAsync(
       soundPath,
-      { shouldPlay: true, volume }
+      { shouldPlay: true, volume: validVolume }
     );
     
     // Unload after playing to free resources
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
-        sound.unloadAsync();
+        sound.unloadAsync().catch((err) => {
+          console.warn(`[Sound] Failed to unload ${soundName}:`, err instanceof Error ? err.message : 'Unknown error');
+        });
       }
     });
   } catch (error) {
