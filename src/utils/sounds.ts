@@ -20,10 +20,13 @@ export async function initializeSounds() {
 /**
  * Generic helper to play a sound file from assets
  * Robust: handles errors gracefully without crashing the app
+ * @param soundPath - Path to the sound asset file
+ * @param soundName - Name of the sound for logging purposes
+ * @param volume - Volume level (0.0 to 1.0). Values outside this range are clamped automatically.
  */
 async function playSoundFile(soundPath: AVPlaybackSource, soundName: string, volume: number = 1.0) {
   try {
-    // Validate volume is in valid range
+    // Validate volume is in valid range (0.0 to 1.0)
     const validVolume = Math.max(0.0, Math.min(1.0, volume));
     
     const { sound } = await Audio.Sound.createAsync(
