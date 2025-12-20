@@ -197,21 +197,28 @@ Full navigation implemented:
 
 ### Known Limitations (Documented)
 
-**v1 Limitations (acceptable for merge):**
-1. **Sound effects:** Console.log stubs instead of real audio
-   - 10s warning: console message
-   - Turn end: console message
-   - Future: Add expo-av for real sounds
+**v1.1 Improvements (Recently Implemented):**
+1. **Sound effects:** Real audio playback using expo-av
+   - 10s warning: Audio beep sound
+   - Turn end: Audio beep sound
+   - Fallback to console.log on error
+   - ✅ FIXED
 
-2. **Word database:** 50 placeholder words vs 30,000 target
-   - Structure ready for full database
-   - expo-sqlite wrapper implemented
-   - Future: Import full word list
+2. **Word database:** Expanded from 50 to 250 Swedish words
+   - 50 substantiv (nouns)
+   - 50 adjektiv (adjectives)
+   - 50 verb (verbs)
+   - 40 personer (people)
+   - 60 platser (places)
+   - ✅ FIXED (5x improvement)
 
-3. **Tiebreaker logic:** Continues with all teams instead of only tied teams
-   - Victory detection works
-   - Tiebreaker message shown correctly
-   - Future: Filter turnOrder to only tied teams
+3. **Tiebreaker logic:** Now filters to only include tied teams
+   - New START_TIEBREAKER action added
+   - turnOrder updated to only include tied team IDs
+   - Proper rotation through only leading teams
+   - ✅ FIXED
+
+**Remaining Limitations:**
 
 4. **Assets:** No custom icon/splash screen
    - Expo defaults used

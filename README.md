@@ -158,10 +158,13 @@ Varje ord har en färgkodad bakgrund baserat på ordtyp för visuell vägledning
 
 ## 📝 Known Limitations (v1)
 
+### Recently Fixed:
+- [x] Riktiga ljudeffekter för timer-varningar (implementerat med expo-av)
+- [x] Utökad ord-databas med 250 svenska ord (5x större än tidigare)
+- [x] Tiebreaker-logik som endast inkluderar topplagen vid oavgjort
+
 ### Inte implementerat än:
-- [ ] Riktiga ljudfiler för timer-varningar (använder console.log)
-- [ ] Fullständig ord-databas med 30,000 ord (50 placeholder-ord finns)
-- [ ] Tiebreaker-logik som endast inkluderar topplagen (fortsätter med alla lag)
+- [ ] Fullständig ord-databas med 30,000 ord (250 ord finns nu)
 - [ ] Custom ikoner och splash screen
 - [ ] Mer avancerad statistik och grafer
 - [ ] Export/import av matchhistorik
