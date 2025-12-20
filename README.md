@@ -62,10 +62,10 @@ Efter varje tur kan du:
 ### Ord-hantering
 - Inga repetitioner per match: visade ord markeras som "used"
 - Om alla ord är använda tillåts repetition som fallback
-- Ordlista innehåller ~3000 svenska ord (v2)
+- Ordlista innehåller ~2950 svenska ord (v2)
   - Organiserade i kategorier: substantiv, verb, adjektiv, personer, platser
   - JSON-baserade datafiler i `src/data/words/sv/`
-  - Cirka 1083 substantiv, 513 verb, 491 adjektiv, 385 personer, 520 platser
+  - Cirka 1076 substantiv, 502 verb, 473 adjektiv, 382 personer, 517 platser
 
 ## 🚀 Kom igång
 
@@ -163,7 +163,7 @@ Varje ord har en färgkodad bakgrund baserat på ordtyp för visuell vägledning
 
 ### Recently Fixed:
 - [x] Riktiga ljudeffekter för timer-varningar (implementerat med expo-av)
-- [x] Utökad ord-databas med ~3000 svenska ord organiserade per kategori
+- [x] Utökad ord-databas med ~2950 svenska ord organiserade per kategori
 - [x] Tiebreaker-logik som endast inkluderar topplagen vid oavgjort
 
 ### Inte implementerat än:
