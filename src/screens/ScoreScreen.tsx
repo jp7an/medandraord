@@ -58,10 +58,10 @@ export default function ScoreScreen({ navigation }: Props) {
   };
 
   const continueWithTiebreaker = () => {
-    // Continue playing with only the teams in the lead
+    // Filter turnOrder to only include tied teams
     setShowVictoryCheck(false);
-    // In a full implementation, we'd filter turnOrder to only include tied teams
-    // For now, we continue with all teams
+    const tiedTeamIds = teamsInLead.map(t => t.id);
+    dispatch({ type: 'START_TIEBREAKER', tiedTeamIds });
     startNextTurn();
   };
 

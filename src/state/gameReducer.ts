@@ -224,6 +224,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         currentRotation: rotationComplete ? state.currentRotation + 1 : state.currentRotation,
       };
 
+    case 'START_TIEBREAKER':
+      return {
+        ...state,
+        turnOrder: action.tiedTeamIds,
+        currentTurnIndex: 0,
+      };
+
     case 'END_MATCH':
       return {
         ...state,

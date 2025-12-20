@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GameProvider } from './src/state/GameContext';
 import { theme } from './src/theme/theme';
+import { initializeSounds } from './src/utils/sounds';
 
 // Screens
 import StartScreen from './src/screens/StartScreen';
@@ -30,6 +31,11 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  // Initialize sounds on app start
+  useEffect(() => {
+    initializeSounds();
+  }, []);
+
   return (
     <GameProvider>
       <NavigationContainer

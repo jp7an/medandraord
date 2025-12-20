@@ -102,6 +102,7 @@ export type GameAction =
   | { type: 'END_TURN' }
   | { type: 'UPDATE_WORD_STATUS'; index: number; status: WordStatus }
   | { type: 'FINISH_REVIEW' }
+  | { type: 'START_TIEBREAKER'; tiedTeamIds: string[] }
   | { type: 'END_MATCH'; winner: Team }
   | { type: 'RESET_GAME' }
   | { type: 'LOAD_HISTORY'; history: MatchHistoryEntry[] };
