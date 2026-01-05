@@ -8,6 +8,7 @@ import Timer from '../components/Timer';
 import WordCard from '../components/WordCard';
 import { useGame } from '../state/GameContext';
 import { getRandomWord } from '../data/words';
+import { playStartSound, playCorrectSound, playPassSound, playFoulSound } from '../utils/sounds';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Turn'>;
 
@@ -41,6 +42,8 @@ export default function TurnScreen({ navigation, route }: Props) {
       if (count === 0) {
         clearInterval(interval);
         setPhase('playing');
+        // Play start sound when turn begins
+        playStartSound();
         // Show first word
         showNextWord();
       }
@@ -55,6 +58,7 @@ export default function TurnScreen({ navigation, route }: Props) {
   };
 
   const handleCorrect = () => {
+    playCorrectSound();
     dispatch({ type: 'MARK_CORRECT' });
     setCorrectCount(prev => prev + 1);
     showNextWord();
@@ -62,12 +66,14 @@ export default function TurnScreen({ navigation, route }: Props) {
 
   const handlePass = () => {
     if (!isPassDisabled) {
+      playPassSound();
       dispatch({ type: 'MARK_PASS' });
       showNextWord();
     }
   };
 
   const handleFoul = () => {
+    playFoulSound();
     dispatch({ type: 'MARK_FOUL' });
     showNextWord();
   };

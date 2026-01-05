@@ -105,6 +105,33 @@ npm run android
 npm run typecheck
 ```
 
+### Anpassa Assets (Ljud och Ikoner)
+
+Appen innehåller placeholder-filer för ljud och ikoner som du kan ersätta med dina egna.
+
+#### Ljud-filer
+Placeholder-ljudfiler finns i `assets/sounds/`. Ersätt dessa med dina egna MP3-filer:
+- `start.mp3` - Spelas när turen börjar (efter nedräkning)
+- `warn10.mp3` - Spelas när 10 sekunder återstår
+- `end.mp3` - Spelas när tiden är slut
+- `correct.mp3` - Spelas när RÄTT-knappen trycks
+- `pass.mp3` - Spelas när PASS-knappen trycks
+- `foul.mp3` - Spelas när REGELBROTT-knappen trycks
+
+**Tips:** Ljudfiler bör vara korta (0.5-2 sekunder) för bästa spelupplevelse.
+
+#### Ikon-filer
+Placeholder-ikonfiler finns i `assets/`:
+- `icon.png` - Huvudikon för appen (rekommenderat: 1024x1024 px)
+- `adaptive-icon.png` - Adaptiv ikon för Android (rekommenderat: 1024x1024 px)
+
+**Obs:** De nuvarande placeholder-filerna är minimala 1x1 bilder och bör ersättas med riktiga ikoner i 1024x1024 px-storlek.
+
+Efter att du ersatt filer, bygg om appen:
+```bash
+npm start
+```
+
 ## 🏗️ Projektstruktur
 
 ```
@@ -165,9 +192,10 @@ Varje ord har en färgkodad bakgrund baserat på ordtyp för visuell vägledning
 - [x] Riktiga ljudeffekter för timer-varningar (implementerat med expo-av)
 - [x] Utökad ord-databas med ~2950 svenska ord organiserade per kategori
 - [x] Tiebreaker-logik som endast inkluderar topplagen vid oavgjort
+- [x] Placeholder-filer för ljud och ikoner (redo att ersättas av användaren)
 
 ### Inte implementerat än:
-- [ ] Custom ikoner och splash screen
+- [ ] Produktionsklara ljudfiler och ikoner (placeholder-filer inkluderade)
 - [ ] Mer avancerad statistik och grafer
 - [ ] Export/import av matchhistorik
 - [ ] Inställningar för volym och ljud
